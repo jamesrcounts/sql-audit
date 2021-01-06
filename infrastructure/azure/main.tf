@@ -1,8 +1,8 @@
 locals {
-  project = "tfaz"
+  project = "sql-audit"
 
   tags = {
-    Environment = "Test"
+    project = local.project
   }
 }
 

@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 0.14"
 
   required_providers {
     azuread = {
@@ -15,9 +15,17 @@ terraform {
       version = "~> 3.0.0"
     }
   }
+
+  backend "remote" {
+    organization = "jamesrcounts"
+
+    workspaces {
+      name = "sql-audit"
+    }
+  }
 }
 
-provider azurerm {
+provider "azurerm" {
   features {
     key_vault {
       recover_soft_deleted_key_vaults = true
