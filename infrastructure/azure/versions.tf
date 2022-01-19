@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.14"
+  required_version = ">= 0.1"
 
   required_providers {
     azuread = {
@@ -16,13 +16,13 @@ terraform {
     }
   }
 
-  backend "remote" {
-    organization = "jamesrcounts"
+  // backend "remote" {
+  //   organization = "jamesrcounts"
 
-    workspaces {
-      name = "sql-audit"
-    }
-  }
+  //   workspaces {
+  //     name = "sql-audit"
+  //   }
+  // }
 }
 
 provider "azurerm" {
