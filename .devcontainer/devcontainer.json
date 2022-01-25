@@ -3,8 +3,8 @@
 	"build": {
 		"dockerfile": "Dockerfile",
 		"args": { 
-			"TERRAFORM_VERSIONS": "0.13.5 0.14.0",
-			"TERRAFORM_VERSION": "0.14.0",
+			"TERRAFORM_VERSIONS": "1.1.3",
+			"TERRAFORM_VERSION": "1.1.3",
 			"TFLINT_VERSION": "0.18.0",
 			"INSTALL_AZURE_CLI": "true",
 			"INSTALL_DOCKER": "true",
@@ -15,17 +15,19 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.defaultProfile.linux": "zsh"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
+		"eamodio.gitlens",
 		"editorconfig.editorconfig",
 		"hashicorp.terraform",
+		"mhutchie.git-graph",
 		"ms-azuretools.vscode-azureterraform",
 		"ms-azuretools.vscode-docker",
 		"ms-vscode.azurecli",
-		"tyriar.sort-lines"
+		"tyriar.sort-lines",
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
