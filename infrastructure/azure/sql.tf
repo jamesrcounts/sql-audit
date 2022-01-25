@@ -19,15 +19,11 @@ data "azurerm_mssql_database" "master" {
 }
 
 resource "azurerm_mssql_server_extended_auditing_policy" "example" {
-  depends_on = [azurerm_mssql_server.example]
-
   log_monitoring_enabled = true
   server_id              = azurerm_mssql_server.example.id
 }
 
 resource "azurerm_mssql_database_extended_auditing_policy" "master" {
-  depends_on = [azurerm_mssql_server.example]
-
   database_id            = data.azurerm_mssql_database.master.id
   log_monitoring_enabled = true
 }
