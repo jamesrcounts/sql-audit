@@ -15,17 +15,19 @@
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.defaultProfile.linux": "zsh"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
+		"eamodio.gitlens",
 		"editorconfig.editorconfig",
 		"hashicorp.terraform",
+		"mhutchie.git-graph",
 		"ms-azuretools.vscode-azureterraform",
 		"ms-azuretools.vscode-docker",
 		"ms-vscode.azurecli",
-		"tyriar.sort-lines"
+		"tyriar.sort-lines",
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
