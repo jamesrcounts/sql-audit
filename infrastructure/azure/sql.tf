@@ -76,13 +76,3 @@ resource "azurerm_monitor_diagnostic_setting" "audit" {
     }
   }
 }
-
-// // module "diagnostics" {
-// //   source                     = "github.com/jamesrcounts/terraform-modules.git//diagnostics?ref=main"
-// //   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
-
-// //   monitored_services = {
-// //     master = local.database_id
-// //     server = azurerm_mssql_server.example.id
-// //   }
-// // }
