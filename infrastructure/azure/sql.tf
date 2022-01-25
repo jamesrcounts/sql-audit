@@ -34,5 +34,6 @@ module "diagnostics" {
 
   monitored_services = {
     "audit-db" = data.azurerm_mssql_database.master.id
+    sql        = azurerm_mssql_server.example.id
   }
 }
