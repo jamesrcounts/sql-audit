@@ -2,7 +2,8 @@ locals {
   project = "sql-audit"
 
   tags = {
-    project = local.project
+    project   = local.project
+    workspace = terraform.workspace
   }
 }
 
