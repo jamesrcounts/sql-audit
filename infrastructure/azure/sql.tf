@@ -1,3 +1,7 @@
+locals {
+  database_id = "${azurerm_mssql_server.example.id}/databases/master"
+}
+
 resource "azurerm_mssql_server" "example" {
   administrator_login          = "missadministrator"
   administrator_login_password = "AdminPassword123!"
@@ -13,18 +17,13 @@ resource "azurerm_mssql_server" "example" {
   }
 }
 
-data "azurerm_mssql_database" "master" {
-  name      = "master"
-  server_id = azurerm_mssql_server.example.id
-}
-
 resource "azurerm_mssql_server_extended_auditing_policy" "example" {
   log_monitoring_enabled = true
   server_id              = azurerm_mssql_server.example.id
 }
 
 resource "azurerm_mssql_database_extended_auditing_policy" "master" {
-  database_id            = data.azurerm_mssql_database.master.id
+  database_id            = local.database_id
   log_monitoring_enabled = true
 }
 
@@ -33,7 +32,7 @@ module "diagnostics" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
 
   monitored_services = {
-    "audit-db" = data.azurerm_mssql_database.master.id
+    "audit-db" = local.database_id
     sql        = azurerm_mssql_server.example.id
   }
 }
