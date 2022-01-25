@@ -37,15 +37,8 @@ data "azurerm_monitor_diagnostic_categories" "example" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "audit" {
-  // This should not be needed but being extra explicit to follow the ARM example
-  depends_on = [
-    azurerm_log_analytics_workspace.logs,
-    data.azurerm_mssql_database.master,
-    azurerm_mssql_database_extended_auditing_policy.master,
-  ]
-
   log_analytics_workspace_id = azurerm_log_analytics_workspace.logs.id
-  name                       = "SQLSecurityAuditEvents"
+  name                       = "diag-audit-db"
   target_resource_id         = data.azurerm_mssql_database.master.id
 
   dynamic "log" {
@@ -53,7 +46,7 @@ resource "azurerm_monitor_diagnostic_setting" "audit" {
 
     content {
       category = log.value
-      enabled  = contains(["DevOpsOperationsAudit", "SQLSecurityAuditEvents"], log.value)
+      enabled  = true
 
       retention_policy {
         days    = 0
@@ -67,7 +60,7 @@ resource "azurerm_monitor_diagnostic_setting" "audit" {
 
     content {
       category = metric.value
-      enabled  = false
+      enabled  = true
 
       retention_policy {
         days    = 0
